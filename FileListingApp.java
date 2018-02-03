@@ -3,45 +3,49 @@ import java.util.*;
 
 public class FileListingApp {
 
-	public static void main(String[] args)
+	public static void main(String[] args) throws IOException
 	{
 		System.out.println("\t\t\t-----    WELCOME TO FILE LISTING APP    -----");
-		
-		FileApp();         // This Function is for reading and listing the files and folders
-	}
-	
-	
-	public static void FileApp()
-	{
-		File file = new File("C:\\Users\\Aman Singh\\Desktop\\Java Assignments GITHUB\\Project1\\abc.txt");
+		Scanner sc = new Scanner(System.in);
+		String path = sc.nextLine();
+		File file = new File(path);
+		FileReader f = null;
 	try {
-		Scanner sc = new Scanner(file);
-		String path1 = sc.nextLine();               // To Read the first line in the file
-		
-		 File newpath = new File(path1);            // The Path is fetched from the file
+		  String a = "";
+		  f = new FileReader(file);
+		  int c;
+		while ((c=f.read())!=10)
+		{
+				a = a + (char)c;
+		} 
+		 System.out.println(a);
+		 File newpath = new File(a);            // The Path is fetched from the file
 		 
-		 File files[] = newpath.listFiles();
+		 File files[] = newpath.listFiles(); 
 		     
-		 int count = 0;
+		 int count1 = 0;
 		 System.out.println();
-		 System.out.println(" The Files in the Root Folder are - ");
+		 System.out.println("The Files in the Root Folder are - ");
+		 
 		 for(int i=0;i<files.length;i++)
-		 {
-			 
+		 {			 
 			 if(files[i].isFile())
 			 {
-				 count++;
-			 	 System.out.println("=> File "+count+" - "+files[i].getName()+" | path : "+files[i].getAbsolutePath());		      
+				 count1++;
+			 	 System.out.println("=> File "+count1+" - "+files[i].getName()+" | path : "+files[i].getAbsolutePath());		      
 			 }
 		 }
-		 
-		 check(files , path1);
-		 
+		 check(files , a);		
 	} 
-	            catch (FileNotFoundException e) 
+	            catch (Exception e) 
 	            {		
-				System.out.println("File not found !");
+				System.out.println("Error Occurred !");
 			    }
+	            finally
+	            {
+	            	f.close();
+	            }
+	
 	}
 	// Checks if it is a directory , then list all the inside files and folders with their name and absolute path
 	// else list all the files in that root folder with their name and path
