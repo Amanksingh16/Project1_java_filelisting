@@ -8,18 +8,27 @@ public class FileListingApp {
 		System.out.println("\t\t\t-----    WELCOME TO FILE LISTING APP    -----");
 		Scanner sc = new Scanner(System.in);
 		String path = sc.nextLine();
+		String a = "";
+		String path1 = "";
 		File file = new File(path);
 		FileReader f = null;
 	try {
-		  String a = "";
+		  int count = 0;
 		  f = new FileReader(file);
 		  int c;
-		while ((c=f.read())!=10)
+		while ((c=f.read())!=-1)
 		{
+			if((c)==10)
+			{
+				count++;
+			}
+			if(count == 0)
+			{
 				a = a + (char)c;
+				path1 = a.substring(0, a.length()-1);
+			}
 		} 
-		 System.out.println(a);
-		 File newpath = new File(a);            // The Path is fetched from the file
+		 File newpath = new File(path1);            // The Path is fetched from the file
 		 
 		 File files[] = newpath.listFiles(); 
 		     
@@ -35,7 +44,7 @@ public class FileListingApp {
 			 	 System.out.println("=> File "+count1+" - "+files[i].getName()+" | path : "+files[i].getAbsolutePath());		      
 			 }
 		 }
-		 check(files , a);		
+		 check(files , path1);		
 	} 
 	            catch (Exception e) 
 	            {		
