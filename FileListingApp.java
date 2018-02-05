@@ -4,7 +4,7 @@ import java.util.*;
 public class FileListingApp {
 
 	public static void main(String[] args) throws IOException {
-		System.out.println("\t\t\t-----    WELCOME TO FILE LISTING APP    -----");
+		System.out.println("\t\t\t\t-----    WELCOME TO FILE LISTING APP    -----");
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter the path of the file which contains two paths");
